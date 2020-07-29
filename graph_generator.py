@@ -32,30 +32,35 @@ row_count = col_count = temp_count = max_column = 0
 # To identify the number of rows and columns.
 starting_pos = 0
 for i in range(len(num_input)):
+    # Calculating Column count
     if(num_input[i] < 0):
         col_count += -num_input[i]
     else:
         col_count += num_input[i]
+    # Calculating Row count
     if i % 2 == 0:
         temp_count = temp_count + num_input[i]
     else:
         temp_count = temp_count - num_input[i]
+
     if temp_count < 0 and starting_pos > temp_count:
         starting_pos = temp_count
+    # Assigning row count and max_column
     if(temp_count > row_count):
         row_count = temp_count
         max_column = col_count
-        temp_count = row_count
+
+# Reversing it to positive number.
 
 starting_pos = -starting_pos
+
 '''
 Creating an empty 2D Array (Nested Lists) of size Row Count x Column Count.
 
 The extra one added to row count is to print the extra string to be displayed at top of max column.
 '''
-# print(row_count)
 
-row_count = row_count+starting_pos
+row_count = row_count + starting_pos
 matrix = [[0 for x in range(col_count)] for y in range(row_count+1)]
 
 # Filling the array initially with spaces.
@@ -63,18 +68,14 @@ matrix = [[0 for x in range(col_count)] for y in range(row_count+1)]
 for i in range(row_count+1):
     for j in range(col_count):
         matrix[i][j] = ' '
-print("Neg: ", starting_pos)
-print("Row count: ", row_count)
 
+# Initializing counter variables to loop through the lists.
 row_ctr = starting_pos
 col_ctr = 0
-
-# Storing the symbols corresponding to rows and columns
-
-# print(type(len(num_input)))
-
 temp_ctr = 0
 flag = 0
+
+# Storing the symbols corresponding to rows and columns
 
 for i in range(len(num_input)):
     if num_input[i] < 0:
